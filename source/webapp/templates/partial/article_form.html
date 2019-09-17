@@ -1,0 +1,24 @@
+{% csrf_token %}
+<div class="form-group">
+<label>Title</label>
+<input class="form-control" name="title" value="{{ article.title }}">
+</div>
+<div class="form-group">
+<label>Description</label>
+<textarea class="form-control" name="description" rows="3">{{ article.description }}</textarea>
+</div>
+<div class="form-group">
+<label>Select status</label>
+<select class="form-control" name="status" >
+    <option value="{{ article.status }}" selected>{{ article.status }}</option>
+    <option>Новая</option>
+    <option>В процессе</option>
+    <option>Сделана</option>
+</select>
+</div>
+<div class="form-group">
+<label>Date</label>
+<input class="form-control" name="date" required>
+</div>
+<button type="submit" class="btn btn-primary">{{ button_text }}</button>
+<p class="pt-5"><a href="{% url 'index' %}" >На главную</a></p>

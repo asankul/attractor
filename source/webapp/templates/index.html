@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+        <a class="navbar-brand" href="{% url 'article_add' %}">Создать новую</a>
+{% endblock %}
+
+{% block content %}
+<h1 class="pt-5">To-Do list:</h1>
+    <form method="post" action="{% url 'delete_checked' %}">
+    {% csrf_token %}
+{% for article in articles %}
+    <h5 style="display: inline-block;" class="mr-5 pt-2">{{ article.title }}</h5>
+    <a href="{% url 'article_view' article.pk %}" >Подробнее</a>
+    <a href="{% url 'article_update' article.pk %}" >Изменить</a>
+    <input type="checkbox" name="delete" value="{{ article.pk }}">Выбрать, для удаления<Br>
+    <hr>
+{% endfor %}
+     <p><input type="submit" value="Delete checked"></p>
+    </form>
+<a href="{% url 'article_add' %}" >Создать новую</a>
+{% endblock %}
